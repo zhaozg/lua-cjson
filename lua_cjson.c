@@ -65,6 +65,12 @@
 
 #endif
 
+#ifdef _MSC_VER
+#define CJSON_EXPORT    __declspec(dllexport)
+#else
+#define CJSON_EXPORT    extern
+#endif
+
 /* Workaround for Solaris platforms missing isinf() */
 #if !defined(isinf) && (defined(USE_INTERNAL_ISINF) || defined(MISSING_ISINF))
 #define isinf(x) (!isnan(x) && isnan((x) - (x)))
@@ -1507,8 +1513,9 @@ static int lua_cjson_safe_new(lua_State *l) {
   return 1;
 }
 
-int luaopen_cjson(lua_State *l) {
-  lua_cjson_new(l);
+CJSON_EXPORT int luaopen_cjson(lua_State *l)
+{
+    lua_cjson_new(l);
 
 #ifdef ENABLE_CJSON_GLOBAL
   /* Register a global "cjson" table. */
@@ -1520,8 +1527,9 @@ int luaopen_cjson(lua_State *l) {
   return 1;
 }
 
-int luaopen_cjson_safe(lua_State *l) {
-  lua_cjson_safe_new(l);
+CJSON_EXPORT int luaopen_cjson_safe(lua_State *l)
+{
+    lua_cjson_safe_new(l);
 
   /* Return cjson.safe table */
   return 1;
