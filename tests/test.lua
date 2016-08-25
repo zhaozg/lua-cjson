@@ -10,6 +10,17 @@ local json = require "cjson"
 local json_safe = require "cjson.safe"
 local util = require "cjson.util"
 
+local function json_encode_output_type(value)
+    local text = json.encode(value)
+    if string.match(text, "{.*}") then
+        return "object"
+    elseif string.match(text, "%[.*%]") then
+        return "array"
+    else
+        return "scalar"
+    end
+end
+
 local function gen_raw_octets()
     local chars = {}
     for i = 0, 255 do chars[i + 1] = string.char(i) end
