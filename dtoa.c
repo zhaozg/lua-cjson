@@ -1558,7 +1558,7 @@ set_max_dtoa_threads(unsigned int n)
  static ThInfo*
 get_TI(void)
 {
-	unsigned int thno = dtoa_get_threadno();
+	unsigned int thno = (unsigned int)dtoa_get_threadno();
 	if (thno < maxthreads)
 		return TI1 + thno;
 	if (thno == 0)
