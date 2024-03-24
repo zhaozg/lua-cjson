@@ -10,13 +10,13 @@
 #ifdef MULTIPLE_THREADS
 #include "dtoa_config.h"
 #include <unistd.h>
-static inline void fpconv_init()
+static inline void fpconv_init(void)
 {
     // Add one to try and avoid core id multiplier alignment
     set_max_dtoa_threads((sysconf(_SC_NPROCESSORS_CONF) + 1) * 3);
 }
 #else
-static inline void fpconv_init()
+static inline void fpconv_init(void)
 {
     /* Do nothing - not required */
 }

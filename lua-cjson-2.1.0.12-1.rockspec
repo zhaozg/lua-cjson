@@ -16,7 +16,7 @@ description = {
           (infinity, NaN,..)
         - No dependencies on other libraries
     ]],
-    homepage = "http://www.kyne.com.au/~mark/software/lua-cjson.php",
+    homepage = "http://www.kyne.au/~mark/software/lua-cjson.php",
     license = "MIT"
 }
 

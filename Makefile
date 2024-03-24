@@ -11,14 +11,13 @@
 ##                          multi-threaded application. Requries _pthreads_.
 
 ##### Build defaults #####
-LUA_VERSION =       5.4
+LUA_VERSION ?=       5.1
 TARGET =            cjson.so
 PREFIX =            /usr/local
-#CFLAGS =            -g -Wall -pedantic -fno-inline
 CFLAGS =            -O3 -Wall -pedantic -DNDEBUG -g
 CJSON_CFLAGS =      -fpic
 CJSON_LDFLAGS =     -shared
-LUA_INCLUDE_DIR ?=   $(PREFIX)/include/lua$(LUA_VERSION)
+LUA_INCLUDE_DIR ?=   $(PREFIX)/include/luajit-2.1
 LUA_CMODULE_DIR ?=   $(PREFIX)/lib/lua/$(LUA_VERSION)
 LUA_MODULE_DIR ?=    $(PREFIX)/share/lua/$(LUA_VERSION)
 LUA_BIN_DIR ?=       $(PREFIX)/bin

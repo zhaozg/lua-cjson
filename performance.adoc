@@ -1,6 +1,6 @@
 JSON module performance comparison under Lua
 ============================================
-Mark Pulford <mark@kyne.com.au>
+Mark Pulford <mark@kyne.au>
 :revdate: January 22, 2012
 
 This performance comparison aims to provide a guide of relative
