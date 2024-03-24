@@ -11,14 +11,14 @@
 ##                          multi-threaded application. Requries _pthreads_.
 
 ##### Build defaults #####
-LUA_VERSION =       5.3
+LUA_VERSION =       5.4
 TARGET =            cjson.so
 PREFIX =            /usr/local
 #CFLAGS =            -g -Wall -pedantic -fno-inline
 CFLAGS =            -O3 -Wall -pedantic -DNDEBUG -g
 CJSON_CFLAGS =      -fpic
 CJSON_LDFLAGS =     -shared
-LUA_INCLUDE_DIR ?=   $(PREFIX)/include
+LUA_INCLUDE_DIR ?=   $(PREFIX)/include/lua$(LUA_VERSION)
 LUA_CMODULE_DIR ?=   $(PREFIX)/lib/lua/$(LUA_VERSION)
 LUA_MODULE_DIR ?=    $(PREFIX)/share/lua/$(LUA_VERSION)
 LUA_BIN_DIR ?=       $(PREFIX)/bin
@@ -37,7 +37,7 @@ LUA_BIN_DIR ?=       $(PREFIX)/bin
 
 ## MacOSX (Macports)
 #PREFIX =            /opt/local
-#CJSON_LDFLAGS =     -bundle -undefined dynamic_lookup
+CJSON_LDFLAGS =     -bundle -undefined dynamic_lookup
 
 ## Solaris
 #PREFIX =            /home/user/opt
