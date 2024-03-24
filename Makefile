@@ -64,8 +64,8 @@ FPCONV_OBJS =       fpconv.o
 
 ## Compile built in number conversion to support multi-threaded
 ## applications (recommended)
-#CJSON_CFLAGS +=     -pthread -DMULTIPLE_THREADS
-#CJSON_LDFLAGS +=    -pthread
+CJSON_CFLAGS +=     -pthread -DMULTIPLE_THREADS
+CJSON_LDFLAGS +=    -pthread
 
 ##### End customisable sections #####
 
