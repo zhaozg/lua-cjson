@@ -11,13 +11,14 @@
 ##                          multi-threaded application. Requries _pthreads_.
 
 ##### Build defaults #####
+LUA ?=               luajit
 LUA_VERSION ?=       5.1
 TARGET =            cjson.so
 PREFIX =            /usr/local
 CFLAGS =            -O3 -Wall -pedantic -DNDEBUG -g
 CJSON_CFLAGS =      -fpic
 CJSON_LDFLAGS =     -shared
-LUA_INCLUDE_DIR ?=   $(PREFIX)/include/luajit-2.1
+LUA_CFLAGS ?=        $(shell pkg-config $(LUA) --cflags)
 LUA_CMODULE_DIR ?=   $(PREFIX)/lib/lua/$(LUA_VERSION)
 LUA_MODULE_DIR ?=    $(PREFIX)/share/lua/$(LUA_VERSION)
 LUA_BIN_DIR ?=       $(PREFIX)/bin
@@ -29,14 +30,10 @@ LUA_BIN_DIR ?=       $(PREFIX)/bin
 ## See http://lua-users.org/wiki/BuildingModules for further platform
 ## specific details.
 
-## Linux
-
-## FreeBSD
-#LUA_INCLUDE_DIR =   $(PREFIX)/include/lua51
-
 ## MacOSX (Macports)
-#PREFIX =            /opt/local
+ifeq ($(uname), Darwin)
 CJSON_LDFLAGS =     -bundle -undefined dynamic_lookup
+endif
 
 ## Solaris
 #PREFIX =            /home/user/opt
@@ -78,7 +75,7 @@ EXECPERM =          755
 
 ASCIIDOC =          asciidoc
 
-BUILD_CFLAGS =      -I$(LUA_INCLUDE_DIR) $(CJSON_CFLAGS)
+BUILD_CFLAGS =      $(LUA_CFLAGS) $(CJSON_CFLAGS)
 OBJS =              lua_cjson.o strbuf.o $(FPCONV_OBJS)
 
 .PHONY: all clean install install-extra doc
